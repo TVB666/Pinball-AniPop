@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-17 20:40:58
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-18 21:48:30
+ * @LastEditTime: 2019-11-20 01:56:19
  */
 
 var e = sel => document.querySelector(sel)
@@ -20,12 +20,12 @@ var log = function (value) {
 var imageFromPath = function (path) {
   var img = new Image();
   img.src = path;
-  return img
+  return img 
 }
 
 /**
  * @description: 碰撞检测 矩形 左上角顺时针开始记为a，依次为div1a,div1b,div1c,div1d
- * @param {type} 两个矩形
+ * @param {object} 两个矩形
  * @return: boolean
  */
 var rectIntersects = function (div1, div2) {

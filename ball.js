@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-17 20:33:30
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-18 23:32:49
+ * @LastEditTime: 2019-11-22 00:05:32
  */
 var Ball = function (game) {
   var o = game.imageByName('ball')
@@ -38,6 +38,11 @@ var Ball = function (game) {
       o.x += o.speedX;
       o.y += o.speedY;
     }
+  }
+  o.inPoint = function(target){
+    inX  = o.x < target.offsetX  && o.x + o.w > target.offsetX
+    inY  = o.y < target.offsetY  && o.y + o.h > target.offsetY
+    return inX && inY
   }
   return o;
 }

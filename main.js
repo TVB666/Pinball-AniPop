@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-18 00:07:55
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-20 00:52:26
+ * @LastEditTime: 2019-11-22 00:11:29
  */
 var blocks = [];
 var loadLevel = function (game, n) {
@@ -90,8 +90,32 @@ var _main = function () {
         }
       }
     }
+    var enableMove = false
+    // debug模式，mouse event
+    game.canvas.addEventListener('mousedown', function (event) {
+      if (ball.inPoint(event)) {
+        console.log('点中了');
+        enableMove = true
+      }
+    })
+    game.canvas.addEventListener('mousemove', function (event) {
+      if(enableMove){
+        ball.x = event.offsetX
+        ball.y = event.offsetY
+      }
+    })
+    game.canvas.addEventListener('mouseup', function (event) {
+        if(enableMove){
+          enableMove = false
+        }
+    })
+
     // 绘制图形
     game.draw = function () {
+      // 背景
+      game.ctx.fillStyle = "#27273A";
+      game.ctx.fillRect(0, 0, 500, 300);
+      // 景物
       game.drawImage(paddle)
       game.drawImage(ball)
       // 砖块碰撞检测
