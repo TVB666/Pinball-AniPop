@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-17 20:46:45
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-21 23:25:27
+ * @LastEditTime: 2019-11-23 14:59:12
  */
 
 /**
@@ -12,8 +12,9 @@
  * @param {type} fps images是个对象，名字：路劲
  * @return: game
  */
-var GuaGame = function (fps, images,runCallback) {
+var GuaGame = function (fps, images, runCallback) {
   var g = {
+    scene: null,
     actions: {},
     keydowns: {},
     images: {},
@@ -33,6 +34,14 @@ var GuaGame = function (fps, images,runCallback) {
   window.addEventListener('keyup', function (event) {
     g.keydowns[event.key] = false
   })
+  // update
+  g.update = function () {
+    g.scene.update()
+  }
+  // draw
+  g.draw = function () {
+    g.scene.draw()
+  }
   g.registerAction = function (key, callback) {
     g.actions[key] = callback;
   }
@@ -46,11 +55,11 @@ var GuaGame = function (fps, images,runCallback) {
       }
     }
     // 更新
-    g.update();
+    g.update()
     // 清除 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // 绘制
-    g.draw();
+    g.draw()
     setTimeout(function () {
       runloop(window.fps)
     }, 1000 / window.fps)
@@ -60,7 +69,7 @@ var GuaGame = function (fps, images,runCallback) {
   //预先载入所有图片 
   var imagesNames = Object.keys(images)
   console.log('imagesNames', imagesNames);
-  
+
   for (var index = 0; index < imagesNames.length; index++) {
     let name = imagesNames[index]
     var path = images[name]
@@ -72,7 +81,7 @@ var GuaGame = function (fps, images,runCallback) {
       console.log('loads', g.images, index);
       if (loads.length === imagesNames.length) {
         // 加载完图片了
-        g.run()
+        g.__start()
       }
     }
   }
@@ -88,11 +97,20 @@ var GuaGame = function (fps, images,runCallback) {
     return image
   }
 
-  g.run = function () {
-    runCallback(g)
+  g.runWithScene = function (scene) {
+    g.scene = scene
+    // 开始运行程序
     setTimeout(function () {
-      runloop(fps)
+      runloop()
     }, 1000 / fps)
+  }
+
+  // 场景替换
+  g.replaceScene = function (scene) {
+    g.scene = scene
+  }
+  g.__start = function (scene) {
+    runCallback(g)
   }
   return g;
 }

@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-18 00:07:55
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-22 00:11:29
+ * @LastEditTime: 2019-11-23 14:55:27
  */
 var blocks = [];
 var loadLevel = function (game, n) {
@@ -19,6 +19,9 @@ var loadLevel = function (game, n) {
   return blocks
 }
 
+/**
+ * @description: debugger 模式
+ */
 var enableDebugModes = function (game, enable) {
   if (!enable) {
     return;
@@ -43,6 +46,8 @@ var enableDebugModes = function (game, enable) {
   })
 }
 
+// enableDebugModes(false)
+
 var _main = function () {
   // 载入图片
   var images = {
@@ -51,86 +56,10 @@ var _main = function () {
     block: 'block.png',
   }
   var game = GuaGame(30, images, function (g) {
-    // 挡板int
-    var paddle = Paddle(game);
-    // 球int
-    var ball = Ball(game);
-    // 砖块int
-    blocks = loadLevel(game, 1)
-    // 分数int
-    var srouce = 0
-
-    game.registerAction('a', function () {
-      paddle.moveLeft();
-    })
-    game.registerAction('d', function () {
-      paddle.moveRight();
-    })
-    game.registerAction('f', function () {
-      ball.fire()
-    })
-    enableDebugModes(false)
-    game.update = function () {
-      if (window.paused) {
-        return
-      }
-      ball.move();
-      // 挡板碰撞检测
-      if (rectIntersects(paddle, ball)) {
-        ball.speedY *= -1;
-      }
-      // 砖块碰撞检测
-      for (let index = 0; index < blocks.length; index++) {
-        var block = blocks[index]
-        if (rectIntersects(ball, block) && block.aclived) {
-          srouce += 100
-          block.kill();
-          ball.speedY *= -1;
-          ball.speedX *= -1;
-        }
-      }
-    }
-    var enableMove = false
-    // debug模式，mouse event
-    game.canvas.addEventListener('mousedown', function (event) {
-      if (ball.inPoint(event)) {
-        console.log('点中了');
-        enableMove = true
-      }
-    })
-    game.canvas.addEventListener('mousemove', function (event) {
-      if(enableMove){
-        ball.x = event.offsetX
-        ball.y = event.offsetY
-      }
-    })
-    game.canvas.addEventListener('mouseup', function (event) {
-        if(enableMove){
-          enableMove = false
-        }
-    })
-
-    // 绘制图形
-    game.draw = function () {
-      // 背景
-      game.ctx.fillStyle = "#27273A";
-      game.ctx.fillRect(0, 0, 500, 300);
-      // 景物
-      game.drawImage(paddle)
-      game.drawImage(ball)
-      // 砖块碰撞检测
-      for (let index = 0; index < blocks.length; index++) {
-        var block = blocks[index]
-        if (block.aclived) {
-          game.drawImage(block)
-        }
-      }
-
-      game.ctx.fillText('分数: ' + srouce, 20, 290)
-    }
+    var scene = Scene(g)
+    g.runWithScene(scene)
   });
   // 画布int
-
   enableDebugModes(game, true)
 }
 _main()
