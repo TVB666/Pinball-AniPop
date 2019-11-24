@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-17 20:40:58
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-20 01:56:19
+ * @LastEditTime: 2019-11-24 17:07:47
  */
 
 var e = sel => document.querySelector(sel)
@@ -20,7 +20,7 @@ var log = function (value) {
 var imageFromPath = function (path) {
   var img = new Image();
   img.src = path;
-  return img 
+  return img
 }
 
 /**
@@ -67,4 +67,25 @@ var rectIntersects = function (div1, div2) {
   }
   log('相撞了')
   return true
+}
+
+// 登录
+var handleLogin = function () {
+  var psw = document.getElementById('id-input-psw').value
+  if (psw === '123') {
+    document.getElementById("id-vip-area").style = "display: block"
+  } else {
+    alert('账号错误')
+  }
+}
+
+
+var switchAliveNumber = (number) => {
+  const list = document.getElementsByClassName('button-vip-edit')
+  for (let index = 0; index < list.length; index++) {
+    list[index].classList.remove("blue")
+  }
+  list[number].classList.add("blue")
+  window.aliveNumber = number;
+  Edit()
 }

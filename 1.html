@@ -4,12 +4,10 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-10-08 00:07:53
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-23 18:02:14
+ * @LastEditTime: 2019-11-24 19:26:32
  -->
-  <!-- TODO  文件分类 add-->
-  <!-- TODO  script 说明 add-->
-  <!-- TODO 游戏开始-&& 结束->
-  <!-- TODO 游戏开始 && 结束合并-->
+<!-- TODO 编辑器 球起始位置 砖块位置-->
+<!-- TODO 充钱可以变得更强 input 密码-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,14 +35,49 @@
   <script src="level.js"></script>
   <!-- 配置函数 -->
   <script src="utils/utils.js"></script>
+  <!-- vip 功能 -->
+  <script src="utils/edit.js"></script>
 </head>
 
 <body>
   <canvas id="canvas-block" width="500px" height="300px"></canvas>
-  <input type="range" id="id-input-range" value="30">
+  <!-- <span>请输入VIP编辑账号(123):</span>
+  <input type="password" id="id-input-psw" placeholder="充钱可以让你变的更强" autocomplete="off"> 
+  <button onclick="handleLogin()">确定</button> -->
+  <br />
+  <span>小球速度: </span> &#12288; 0 &#32;<input type="range" id="id-input-range" value="30">&#32;100
+  <br />
+  <div id="id-vip-area">
+    <br />
+    请在以下框框内编辑砖块初始位置
+    <canvas id="canvas-block-vip-block" width="500px" height="200px"></canvas>
+    <button class="button-vip-edit" onclick="switchAliveNumber(0)">一条命</button>
+    <button class="button-vip-edit" onclick="switchAliveNumber(1)">两条命</button>
+    <button class="button-vip-edit" onclick="switchAliveNumber(2)">三条命</button>
+    &#12288;
+    <button onclick="saveBlockData()">保存</button>
+    <br />
+    <!-- <br />
+      请在以下框框内编辑小球初始位置
+      <canvas id="canvas-block-vip-ball" width="500px" height="50px"></canvas> -->
+    <p>坐标&&生命</p>
+    <textarea rows="10" cols="30" id='id-text-area'></textarea>
+    <!-- <br />
+      请在以下框框内编辑挡板初始位置
+      <canvas id="canvas-block-vip-paddle" width="500px" height="50px"></canvas>
+      <br /> -->
+  </div>
   <!-- <textarea name="" id="id-text-area" cols="50" rows="20"></textarea> -->
   <script src="main.js">
   </script>
 </body>
+<style>
+  /* #id-vip-area{
+    display: none;
+  } */
+  .blue {
+    color: blue;
+  }
+</style>
 
 </html>

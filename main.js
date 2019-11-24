@@ -4,12 +4,12 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-18 00:07:55
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-24 10:43:00
+ * @LastEditTime: 2019-11-24 19:17:52
  */
 var blocks = [];
 var loadLevel = function (game, n) {
   n = n - 1
-  var level = Level[n]
+  var level = Level(n)
   var blocks = []
   for (var i = 0; i < level.length; i++) {
     var p = level[i]
@@ -29,7 +29,6 @@ var enableDebugModes = function (game, enable) {
   window.paused = false
   window.addEventListener('keydown', function () {
     var k = event.key
-    console.log(k);
     if (k === 'p') {
       paused = !paused
     } else if ('123456789'.includes(k)) {
@@ -52,13 +51,16 @@ var _main = function () {
     paddle: 'images/paddle.png',
     ball: 'images/ball.png',
     block: 'images/block.png',
+    alive2: 'images/alive2.png',
+    alive3: 'images/alive3.png',
   }
   var game = Game.instance(30, images, function (g) {
     var start  =  SceneStart.new(g)   
     g.runWithScene(start)
-
   });
   // 画布int
   enableDebugModes(game, true)
+  switchAliveNumber(1);
+
 }
 _main()

@@ -4,12 +4,12 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-17 20:33:30
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-22 00:05:32
+ * @LastEditTime: 2019-11-24 19:20:06
  */
 var Ball = function (game) {
   var o = game.imageByName('ball')
-  o.x = 150,
-  o.y = 160,
+  o.x = 100,
+  o.y = 100,
   o.speedX = 5,
   o.speedY = 5,
   o.fired = false,
