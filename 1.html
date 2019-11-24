@@ -1,13 +1,15 @@
 <!--
- * @Descripttion: 
- * @version: 1.1
+ * @Descripttion: lesson 6
+ * @version: 1.0
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-10-08 00:07:53
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-23 15:03:55
+ * @LastEditTime: 2019-11-23 18:02:14
  -->
-  <!-- TODO 场景抽离 -->
-  <!-- TODO game over-->
+  <!-- TODO  文件分类 add-->
+  <!-- TODO  script 说明 add-->
+  <!-- TODO 游戏开始-&& 结束->
+  <!-- TODO 游戏开始 && 结束合并-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,20 +23,26 @@
       border: 1px solid black;
     }
   </style>
-  <script src="utils.js"></script>
-  <script src="game.js"></script>
-  <script src="ball.js"></script>
-  <script src="paddle.js"></script>
-  <script src="block.js"></script>
+  <!-- game -->
+  <script src="game/game.js"></script>
+  <script src="game/game_scene.js"></script>
+  <!-- 场景 -->
+  <script src="scene/playing/ball.js"></script>
+  <script src="scene/playing/paddle.js"></script>
+  <script src="scene/playing/block.js"></script>
+  <script src="scene/start/scene_start.js"></script>
+  <script src="scene/playing/scene.js"></script>
+  <script src="scene/end/scene_end.js"></script>
+  <!-- 关卡等级 -->
   <script src="level.js"></script>
-  <script src="scene.js"></script>
-  <script src="scene_end.js"></script>
+  <!-- 配置函数 -->
+  <script src="utils/utils.js"></script>
 </head>
 
 <body>
   <canvas id="canvas-block" width="500px" height="300px"></canvas>
   <input type="range" id="id-input-range" value="30">
-  <textarea name="" id="id-text-area" cols="50" rows="20"></textarea>
+  <!-- <textarea name="" id="id-text-area" cols="50" rows="20"></textarea> -->
   <script src="main.js">
   </script>
 </body>

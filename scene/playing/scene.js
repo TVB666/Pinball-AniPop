@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-23 13:53:10
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-23 15:02:26
+ * @LastEditTime: 2019-11-23 18:04:40
  */
 var Scene = function (game) {
   var s = {
@@ -56,7 +56,7 @@ var Scene = function (game) {
     // 判断游戏结束
     if (ball.y > paddle.y) {
       // 跳转到 游戏结束 的场景
-      var end = SceneEnd(game)
+      var end = new SceneEnd(game)
       game.replaceScene(end)
     }
 

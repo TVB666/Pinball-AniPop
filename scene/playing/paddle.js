@@ -4,20 +4,12 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-17 20:32:58
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-18 23:31:55
+ * @LastEditTime: 2019-11-24 10:46:45
  */
 var Paddle = function (game) {
-  // var image = imageFromPath('paddle.png')  
-  console.log(game);
   var o = game.imageByName('paddle')
-  // var o = {
-  //   image: image,
-  //   x: 100,
-  //   y: 230,
-  //   speed: 10,
-  // }
   o.x = 100
-  o.y = 200
+  o.y = 250
   o.speed = 10
   var paddle = o;
   o.moveLeft = function () {

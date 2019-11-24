@@ -4,7 +4,7 @@
  * @Author: ZM_lee└(^o^)┘
  * @Date: 2019-11-18 00:07:55
  * @LastEditors: ZM_lee└(^o^)┘
- * @LastEditTime: 2019-11-23 14:55:27
+ * @LastEditTime: 2019-11-24 10:43:00
  */
 var blocks = [];
 var loadLevel = function (game, n) {
@@ -46,18 +46,17 @@ var enableDebugModes = function (game, enable) {
   })
 }
 
-// enableDebugModes(false)
-
 var _main = function () {
   // 载入图片
   var images = {
-    paddle: 'paddle.png',
-    ball: 'ball.png',
-    block: 'block.png',
+    paddle: 'images/paddle.png',
+    ball: 'images/ball.png',
+    block: 'images/block.png',
   }
-  var game = GuaGame(30, images, function (g) {
-    var scene = Scene(g)
-    g.runWithScene(scene)
+  var game = Game.instance(30, images, function (g) {
+    var start  =  SceneStart.new(g)   
+    g.runWithScene(start)
+
   });
   // 画布int
   enableDebugModes(game, true)
